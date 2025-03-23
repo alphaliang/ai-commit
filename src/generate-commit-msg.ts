@@ -137,10 +137,6 @@ export async function generateCommitMsg(arg) {
             // Extract content from within code block markers and trim whitespace
             commitMessage = match[1].trim();
           }
-
-          scmInputBox.value = commitMessage;
-        } else {
-          throw new Error('Failed to generate commit message');
         }
 
 
