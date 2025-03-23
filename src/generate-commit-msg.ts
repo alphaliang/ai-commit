@@ -129,16 +129,14 @@ export async function generateCommitMsg(arg) {
         // if have code block mark: ``` then remove it
         // and remove all new lines and spaces before and after the code block
         if (commitMessage) {
+          commitMessage = commitMessage.trim();
           // Check if message is wrapped in code block markers
-          const codeBlockRegex = /^\s*```(?:\w*\n)?([\s\S]*?)```\s*$/;
-          const match = commitMessage.match(codeBlockRegex);
-
-          if (match) {
-            // Extract content from within code block markers and trim whitespace
-            commitMessage = match[1].trim();
+          if (commitMessage.startsWith('```') && commitMessage.endsWith('```')) {
+            // Extract content from within code block markers
+            commitMessage = commitMessage.slice(3, -3).trim();
           }
+          commitMessage = commitMessage.trim();
         }
-
 
         if (commitMessage) {
           scmInputBox.value = commitMessage;
